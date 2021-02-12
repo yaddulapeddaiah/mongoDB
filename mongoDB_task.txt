@@ -1,0 +1,37 @@
+							
+Find all the information about each film                ///     db.cinema.find().pretty();
+							
+Find the title of each film                                               db.cinema.find({},{"title":1});
+
+Find the director of each film                                            db.cinema.find({},{"director":1});
+
+Find the title and director of each film                                  db.cinema.find({},{"title":1,"director":1});
+
+Find the title and year of each film                                      db.cinema.find("title":1,"year":1);
+
+Find the movie with a row id of 6                                          db.cinema.find({id:6});
+
+Find the movies released in the years between 2000 and 2010                db.cinema.find({year:{$gt: 2000,$lt:2010}});         
+
+Find the movies not released in the years between 2000 and 2010            db.cinema..find(year:{$not:{$gt:2000,$lt:2010}});
+
+Find the first 5 Pixar movies and their release year                       db.cinema.find({},{title:1}).limit(5);
+
+Find all the Toy Story movies                                              db.cinema.find({title:/^Toy Story/});
+
+Find all the movies directed by John Lasseter                              db.cinema.find({director:"John Lasseter"},{title:1});
+
+
+Find all the movies (and director)not directed byJohn Lasseter              db.cinema.find({director:{$ne:"John Lasseter"}},{title:1,director:1});
+
+
+Find all the WALL-* movies                                                         db.cinema.find({title:/^WALL-"/});
+
+
+List the last four Pixar movies released(ordered from most recent to least)          db.cinema.find({},{title:1,year:1}).sort(year:-1).limit(4);
+
+
+List the first five Pixar movies sorted alphabetically                        db.cinema.find({},{title:1,year:1}).sort(title:1).limit(5);
+
+
+List the next five Pixar movies sorted alphabetically                          db.cinema.find({},{title:1,year:1}).sort(title:1).limit(5).skip(5);
